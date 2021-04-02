@@ -7,7 +7,7 @@ root.title('TicTacTie')
 clicked=True
 count=0
 
-#when button clicked, function will run.
+#when button clicked, function run.
 def b_click(b):
     global clicked,count
 
