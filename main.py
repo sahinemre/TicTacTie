@@ -6,6 +6,29 @@ root.title('TicTacTie')
 
 clicked=True
 count=0
+#disable all the buttons
+def disable_all_buttons():
+    b1.config(state=tki.DISABLED)
+    b2.config(state=tki.DISABLED)
+    b3.config(state=tki.DISABLED)
+    b4.config(state=tki.DISABLED)
+    b5.config(state=tki.DISABLED)
+    b6.config(state=tki.DISABLED)
+    b7.config(state=tki.DISABLED)
+    b8.config(state=tki.DISABLED)
+    b9.config(state=tki.DISABLED)
+#cheking wining situations
+def checkWon():
+    global winner
+    winner=False
+
+    if b1["text"]=="X" and  b2["text"]=="X" and  b3["text"]=="X":
+        b1.config(bg="red")
+        b2.config(bg="red")
+        b3.config(bg="red")
+        winner=True
+        messagebox.showinfo("Tic Tac Toe","CONGRATULATIONS! X wins")
+        disable_all_buttons()
 
 #when button clicked, function run.
 def b_click(b):
@@ -15,10 +38,12 @@ def b_click(b):
         b["text"]="X"
         clicked=False
         count+=1
+        checkWon()
     elif b["text"]==" " and clicked==False:
         b["text"]="O"
         clicked=True
         count+=1
+        checkWon()
     else:
         messagebox.showerror("Tic Tac Toe","Hey! That box has already been selected\nPick another box...")
 
