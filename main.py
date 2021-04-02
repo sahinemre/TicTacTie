@@ -4,9 +4,24 @@ from tkinter import messagebox
 root = tki.Tk()
 root.title('TicTacTie')
 
+clicked=True
+count=0
+
 #when button clicked, function run.
 def b_click(b):
-    pass
+    global clicked,count
+
+    if b["text"]==" " and clicked==True:
+        b["text"]="X"
+        clicked=False
+        count+=1
+    elif b["text"]==" " and clicked==False:
+        b["text"]="O"
+        clicked=True
+        count+=1
+    else:
+        messagebox.showerror("Tic Tac Toe","Hey! That box has already been selected\nPick another box...")
+
 
 #Build out buttons
 b1=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b1))
