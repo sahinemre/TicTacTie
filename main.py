@@ -6,8 +6,10 @@ root.title('TicTacTie')
 
 clicked=True
 count=0
+
 #disable all the buttons
 def disable_all_buttons():
+
     b1.config(state=tki.DISABLED)
     b2.config(state=tki.DISABLED)
     b3.config(state=tki.DISABLED)
@@ -17,8 +19,10 @@ def disable_all_buttons():
     b7.config(state=tki.DISABLED)
     b8.config(state=tki.DISABLED)
     b9.config(state=tki.DISABLED)
+    
 #cheking wining situations
 def checkWon():
+
     global winner
     winner=False
 
@@ -141,9 +145,9 @@ def checkWon():
     else:
         pass
 
-
 #when button clicked, function run.
 def b_click(b):
+
     global clicked,count
 
     if b["text"]==" " and clicked==True:
@@ -158,7 +162,6 @@ def b_click(b):
         checkWon()
     else:
         messagebox.showerror("Tic Tac Toe","Hey! That box has already been selected\nPick another box...")
-
 
 #Build out buttons
 b1=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b1))
