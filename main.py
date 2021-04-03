@@ -4,8 +4,8 @@ from tkinter import messagebox
 root = tki.Tk()
 root.title('TicTacTie')
 
-clicked=True
-count=0
+#clicked=True
+#count=0
 
 #disable all the buttons
 def disable_all_buttons():
@@ -145,6 +145,11 @@ def checkWon():
     else:
         pass
 
+    #No one wins.
+    if count==9 and winner==False:
+        messagebox.showinfo("Tic Tac Toe","No one wins...")
+        disable_all_buttons()
+
 #when button clicked, function run.
 def b_click(b):
 
@@ -163,30 +168,47 @@ def b_click(b):
     else:
         messagebox.showerror("Tic Tac Toe","Hey! That box has already been selected\nPick another box...")
 
-#Build out buttons
-b1=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b1))
-b2=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b2))
-b3=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b3))
+def reset():
 
-b4=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b4))
-b5=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b5))
-b6=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b6))
+    global b1,b2,b3,b4,b5,b6,b7,b8,b9
+    global clicked,count
+    clicked=True
+    count=0
 
-b7=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b7))
-b8=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b8))
-b9=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b9))
+    #Build out buttons
+    b1=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b1))
+    b2=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b2))
+    b3=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b3))
 
-#grid our button on UI
-b1.grid(row=0,column=0)
-b2.grid(row=0,column=1)
-b3.grid(row=0,column=2)
+    b4=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b4))
+    b5=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b5))
+    b6=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b6))
 
-b4.grid(row=1,column=0)
-b5.grid(row=1,column=1)
-b6.grid(row=1,column=2)
+    b7=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b7))
+    b8=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b8))
+    b9=tki.Button(root, text=" ", font=("Helvetica",20),height=3, width=6,bg="SystemButtonFace",command=lambda:b_click(b9))
 
-b7.grid(row=2,column=0)
-b8.grid(row=2,column=1)
-b9.grid(row=2,column=2)
+    #grid our button on UI
+    b1.grid(row=0,column=0)
+    b2.grid(row=0,column=1)
+    b3.grid(row=0,column=2)
 
+    b4.grid(row=1,column=0)
+    b5.grid(row=1,column=1)
+    b6.grid(row=1,column=2)
+
+    b7.grid(row=2,column=0)
+    b8.grid(row=2,column=1)
+    b9.grid(row=2,column=2)
+
+#create menu
+my_menu=tki.Menu(root)
+root.config(menu=my_menu)
+
+#create option on menu
+option_menu=tki.Menu(my_menu,tearoff=False)
+my_menu.add_cascade(label="Options",menu=option_menu)
+option_menu.add_command(label="Restart Game",command=reset)
+
+reset()
 root.mainloop()
